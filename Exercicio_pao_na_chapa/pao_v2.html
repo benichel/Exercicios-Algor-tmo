@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+Qual o tipo de pão na chapa de sua prefencia para a receita? 
+<br><input type="text" name="" id="input_tipo_pao"><br><br>
+Quantos pães serão feitos na receita?
+<br><input type="text" name="" id="input_qtd_paes"><br><br>
+<b>Elementos bases:</b>
+<br><select name="01" id="select_elementos_bases">
+    <option value="manteiga">Manteiga</option>
+    <option value="requeijao">Requeijão</option>
+    <option value="queijo">Queijo</option>
+</select><br><br>
+<b>Opções secundárias:</b>
+<br><select name="02" id="select_opcao_sec">
+    <option value="frigideira">Frigideira</option>
+    <option value="forno">Forno</option>
+    <option value="nao_necessario">Não é necessário</option>
+</select><br><br>
+<b>Temperatura ideal:</b>
+<br><select name="03" id="select_temperatura">
+    <option value="30">Tempepatura 30º</option>
+    <option value="50">Tempepatura 50º</option>
+    <option value="90">Tempepatura 90º</option>
+</select><br>
+<br><button onclick="meu_pao_na_chapa()">Meu pão na chapa</button>
+<div id="div_resultado"></div>
+</body>
+</html>
+
+<script>
+    var pao_perfeito = false;
+    function meu_pao_na_chapa() {
+        const tipo_pao = input_tipo_pao.value;
+        var elementos_base = select_elementos_bases.value;
+        var elementos_sec = select_opcao_sec.value;
+        var temperatura = Number(select_temperatura.value);
+        div_resultado.innerHTML = `E este é o resultado do seu pão ${tipo_pao} na chapa!<br>`
+        if(elementos_sec == "nao_necessario"){
+            div_resultado.innerHTML += `Desculpe, sua lógica da receita não está coerente`;
+        
+        }else if(elementos_base == "manteiga" && elementos_sec == "frigideira"){
+             //validação se o pão está cru
+            if(temperatura == 30){
+                alert("seu pão na chapa está cru") 
+                pao_perfeito = false;
+                imagens()
+             //validação se o pão perfeito
+            }else if(temperatura == 50){
+                div_resultado.innerHTML +=`o pão na chapa sairá perfeito`;
+                pao_perfeito = true;
+                imagens()
+             //validação se o pão queimado
+            }else {
+                div_resultado.innerHTML += `Boa gênio, pão queimado`.toUpperCase();
+            }
+             //validação resto
+        }else {
+            div_resultado.innerHTML += `Lamento, mas essa não é a maneira correta do verdadeiro pão na chapa`;
+        }
+    }
+
+    function imagens(){
+        const qtd_paes = Number(input_qtd_paes.value);
+        var i= 0;
+        while(i < qtd_paes){
+            if(pao_perfeito == true){
+                div_resultado.innerHTML += `<br><img src="pao_perfeito.jpeg">`;
+            }else{
+                div_resultado.innerHTML += `<br><img src="pao_cru.png">`;
+            }
+            i++;
+        }
+    }
+
+</script>
