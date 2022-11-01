@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Qual tipo de pão você come?
+    <select id="select_tipo_pao">
+        <option value="normal">normal</option>
+        <option value="integral">integral</option> 
+        Quantos você come por dia? 
+        <input type="number" id="input_qtd_pao">
+        Quantos Chocolates você come por dia? 
+        <input type="number" id="input_qtd_choco_dia">
+        Quantos pacotes de bolacha recheada você come por dia?
+        <input type="number"  id="input_qtd_bolacha">
+        <button onclick="ver_calorias()">Ver Calorias</button>
+        <div id="resultado"></div>
+    </select>
+</body>
+</html>
+
+<script>
+    function ver_calorias() {
+        var qtd_pao = Number(input_qtd_pao.value);
+        var qtd_choco = Number(input_qtd_choco_dia.value);
+        var qtd_bolacha = Number(input_qtd_bolacha.value);
+
+        var tipo_pao = select_tipo_pao.value;
+
+        var i = 0;
+
+         if (qtd_pao < 0 || qtd_choco < 0  || qtd_bolacha < 0) {
+            alert('erro');
+         }else if(qtd_pao > 10 || qtd_choco > 10 || qtd_bolacha > 10) {
+            alert('A quantidade de pães, chocolates e bolachas deve estar entre 0 e 10');
+         
+         }else if(i > qtd_pao){
+            resultado.innerHTML += `(IMAGEM)`;
+         }else if(i > qtd_choco){
+            resultado.innerHTML += `(IMAGEM)`;
+         }else if(i > qtd_bolacha) {
+            resultado.innerHTML += `(IMAGEM)`;
+         }
+         i++;
+        }
+
+</script>
